@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for profitcenter in profits %}
+<option value="{{ profitcenter.pk }}">{{ profitcenter.description }}</option>
+{% endfor %}

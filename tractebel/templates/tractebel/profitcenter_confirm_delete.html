@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container text-right">
+        <a href="{% url 'tractebel:profit_list' %}" class="btn bn-sm btn-outline-primary">
+           <i class="fas fa-arrow-alt-circle-left"></i> Voltar</a>
+    </div>
+    <div class="container text-center bg-primary text-warning">
+        <form method="post">{% csrf_token %}
+            <h5>Tem certeza que quer apagar o registro de "{{ object }}"?</h5>
+            <div class="text-right">
+                <input class="btn btn-outline-danger" type="submit" value="Confirma">
+            </div>
+        </form>
+    </div>
+{% endblock %}

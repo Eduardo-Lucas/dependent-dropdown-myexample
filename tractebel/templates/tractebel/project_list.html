@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+        <h1 class="text-info">Project List</h1>
+        </div>
+        <div class="col-md-1">
+        <a href="{% url 'tractebel:project_add' %}" class="btn btn-outline-success"><i class="fas fa-plus-square"> New</i>  </a>
+        </div>
+        <div class="col-md-1">
+            <a href="{% url 'tractebel:welcome' %}" class="btn btn-outline-info"><i class="fas fa-arrow-alt-circle-left"> Back</i>  </a>
+        </div>
+    </div>
+    <table class="table table-hover table-striped table-bordered table-sm">
+        <thead>
+            <td class="text-info">Description</td>
+            <td class="text-info">Business Line</td>
+            <td class="text-info">Profit Center</td>
+            <td class="text-info text-center">Edit</td>
+            <td class="text-info text-center">Delete</td>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{project.description}}</td>
+                    <td>{{project.businessline}}</td>
+                    <td>{{project.profitcenter}}</td>
+                    <td class="text-center">
+                        <a href="{% url 'tractebel:project_change' project.id %}">
+                            <i class="fas fa-edit text-warning"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'tractebel:project_delete' project.id %}">
+                            <i class="fas fa-trash text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

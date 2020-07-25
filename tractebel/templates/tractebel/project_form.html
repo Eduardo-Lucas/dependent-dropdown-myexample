@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Project</h1>
+    <form method="POST" id="projectForm" data-profits-url="{% url 'tractebel:ajax_load_profits' %}" novalidate>
+        {% csrf_token %}
+        {{form.as_table}}
+        <input type="submit" class="btn btn-outline-success" value="Gravar">
+        <a href="{% url 'tractebel:project_list' %}" class="btn btn-outline-primary">Voltar</a>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_businessline").change(function () {
+      var url = $("#projectForm").attr("data-profits-url");  // get the url of the `load_profits` view
+      var businessId = $(this).val();  // get the selected Business Line ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-profits/)
+        data: {
+          'businessline': businessId       // add the Business Line id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_profits` view function
+          $("#id_profitcenter").html(data);  // replace the contents of the profit input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+{% endblock %}

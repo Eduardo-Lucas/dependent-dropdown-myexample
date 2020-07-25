@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-info">Bem-Vindo à Página de Projetos</h1>
+
+    <ul>
+    <li><a href="{% url 'tractebel:businessline_list' %}">Business List</a></li>
+    <li><a href="{% url 'tractebel:profit_list' %}">Profit Center</a></li>
+    <li><a href="{% url 'tractebel:project_list' %}">Project</a></li>
+    </ul>
+{% endblock %}
